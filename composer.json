@@ -1,0 +1,19 @@
+{
+  "name": "flazzarotto/sass-generator",
+  "description": "CSS and Sourcemaps SCSS compiler service and command for Symfony3",
+  "version": "0.1.0",
+  "type": "library",
+  "keywords": "SCSS CSS Sourcemap css.map php compiler sass",
+  "require": {
+    "leafo/scssphp" : "^0.5",
+    "koala-framework/sourcemaps": "^0.5.0"
+  },
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Fabrice Lazzarotto",
+      "email": "fabrice.lazzarotto@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev"
+}

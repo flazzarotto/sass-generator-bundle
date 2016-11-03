@@ -1,0 +1,4 @@
+services:
+    sass_generator:
+        class: Flazzarotto\SassGeneratorBundle\SassGenerator\SassGenerator
+        arguments: []
