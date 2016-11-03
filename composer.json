@@ -3,7 +3,7 @@
   "description": "CSS and Sourcemaps SCSS compiler service and command for Symfony3",
   "version": "0.1.0",
   "type": "library",
-  "keywords": "SCSS CSS Sourcemap css.map php compiler sass",
+  "keywords": ["SCSS", "CSS", "Sourcemap", "css.map", "php", "compiler", "sass"],
   "require": {
     "leafo/scssphp" : "^0.5",
     "koala-framework/sourcemaps": "^0.5.0"
