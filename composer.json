@@ -3,6 +3,12 @@
   "description": "CSS and Sourcemaps SCSS compiler service and command for Symfony3",
   "version": "0.1.0",
   "type": "library",
+  "authors": [
+      {
+          "name": "Matthias Morin",
+          "email": "tangoman@free.fr"
+      }
+  ],
   "keywords": ["SCSS", "CSS", "Sourcemap", "css.map", "php", "compiler", "sass"],
   "require": {
     "leafo/scssphp" : "^0.5",
@@ -15,5 +21,11 @@
       "email": "fabrice.lazzarotto@gmail.com"
     }
   ],
-  "minimum-stability": "dev"
+  "autoload": {
+        "psr-4": {
+            "Flazzarotto\\SassGeneratorBundle\\": ""
+        }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
