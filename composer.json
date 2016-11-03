@@ -1,7 +1,7 @@
 {
   "name": "flazzarotto/sass-generator",
   "description": "CSS and Sourcemaps SCSS compiler service and command for Symfony3",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "library",
   "authors": [
       {
