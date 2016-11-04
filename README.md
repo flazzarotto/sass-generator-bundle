@@ -28,14 +28,25 @@ The main goal of this package is to generate compiled css files and associated s
 in a symfony3 project. This can be very useful if your project must be released on cloud services such as Heroku.
 There are to ways to use it :
 
-1. command line: `php bin/console sass:dump [inputFolder:outputFolder] [--source-maps] [--line-numbers]
+1. command line: `php bin/console sass:generate [inputFolder:outputFolder] [--source-maps] [--line-numbers]
                     [--precision x] [--format myFormat]`
    
-   * **inputFolder:outputFolder** : should be something like "web/scssInputFolder:web/cssOutputFolder"
+   * **inputFolder:outputFolder** : should be something like "web/[...]scssInputFolder:web/[...]cssOutputFolder" -
+    default value : `web/scss:web/css`
    * **source-maps** : if set it will generate source maps as well (same folder as css files)
    * **line-number** : will generate CSS with source file line numbers
    * **precision** : set the precision for float numbers (default sass value is 5)
-   * **format** : the format wanted in the following: `compact`, `compressed`, `crunched`, `expanded`, `nested`}
+   * **format** : the format wanted in the following: `compact`, `compressed`, `crunched`, `expanded`, `nested`
+   
+   Examples:
+   
+   * `php bin/console sass:generate web/scss:web/css --source-maps` will generate both
+    compacted css and sourcemap files
+   * `php bin/console sass:generate web/scss:web/css --line-numbers` will generate only css commented with original
+    sass line numbers in comments (can't be used with compressed or crunched formats)
+   * `php bin/console sass:generate web/scss:web/css --format compressed` will generate only minified css (can't work
+    with source-maps option)
+   
 
 2. Service 
 
@@ -46,7 +57,7 @@ There are to ways to use it :
    // get the service inside a controller
    $sassGenerator = $this->get('sass_generator');
    
-   $sassGenerator->init($maps, $lineNumbers, $precision, $format, $input->getArgument('io'));
+   $sassGenerator->init($sourceMaps, $lineNumbers, $precision, $format, "inputFolder:outputFolder");
    ```
    
    Parameters are the same as the command line tool (set options to true to get same result). Then you will be able to

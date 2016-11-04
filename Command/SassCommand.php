@@ -17,7 +17,7 @@ class SassCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('sass:dump')
+            ->setName('sass:generate')
             ->setDescription('Generate css in output directory from sass files in input directory')
             ->addArgument('io',InputArgument::OPTIONAL,'input_dir:output_dir','web/scss:web/css')
             ->addOption('format','f',InputOption::VALUE_REQUIRED,'format of generated file','compact')
@@ -49,7 +49,7 @@ class SassCommand extends ContainerAwareCommand
 
         foreach ($sassGenerator->getSourceFiles() as $file ) {
 
-            $output->writeln(['<question>','Generating CSS '.($input->getOption('source-maps')?' and Sourcemap ':'')
+            $output->writeln(['<question>','Generating CSS '.($input->getOption('source-maps')?'and sourcemap ':'')
                                 .'from '.$file.'...','</question>']);
 
             $css = $sassGenerator->compile($file);
