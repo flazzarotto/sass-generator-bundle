@@ -39,37 +39,38 @@ class SassCommand extends ContainerAwareCommand
 
         $precision = $input->getOption('precision');
 
-        $originalLineNumbers = $input->getOption('line-numbers');
+        $lineNumbers = $input->getOption('line-numbers');
 
         $maps = $input->getOption('source-maps');
 
         $sassGenerator = $this->getContainer()->get('sass_generator');
 
-        $sassGenerator->init($maps, $originalLineNumbers, $precision, $format, $input->getArgument('io'));
+        $sassGenerator->init($maps, $lineNumbers, $precision, $format, $input->getArgument('io'));
 
         foreach ($sassGenerator->getSourceFiles() as $file ) {
 
-            $output->writeln(['','Generating CSS '.($input->getOption('source-maps')?' and Sourcemap ':'')
-                                .'from '.$file.'...','']);
+            $output->writeln(['<question>','Generating CSS '.($input->getOption('source-maps')?' and Sourcemap ':'')
+                                .'from '.$file.'...','</question>']);
 
             $css = $sassGenerator->compile($file);
 
             if (false === $css) {
-                $output->writeln(['','Error generating compiled CSS from '.$file,'']);
+                $output->writeln(['<error>','Error generating compiled CSS from '.$file,'</error>']);
                 continue;
             }
 
-            $output->writeln(['','File '.$css.' successfully generated from '.$file,'']);
+            $output->writeln(['<info>','File '.$css.' successfully generated from '.$file,'</info>']);
 
             if ($input->getOption('source-maps')) {
                 $map = $sassGenerator->generateMap($file);
 
                 if (false === $map) {
-                    $output->writeln(['', 'Error generating CSS sourcemap file from ' . $css, '']);
+                    $output->writeln(['<error>', 'Error generating CSS sourcemap file from ' . $css, '</error>']);
                     continue;
                 }
 
-                $output->writeln(['', 'Sourcemap ' . $map . ' successfully generated from ' . $css, '']);
+                $output->writeln(['<info>', 'Sourcemap ' . $map . ' successfully generated from ' . $css,
+                    '</info>']);
             }
 
         }
@@ -77,7 +78,7 @@ class SassCommand extends ContainerAwareCommand
         $warnings = $sassGenerator->getWarnings();
         if (count($warnings)) {
 
-            $output->writeln(['', 'Following warnings encountered while generating CSS:', '']);
+            $output->writeln(['<comment>', 'Following warnings encountered while generating CSS:', '</comment>']);
             $output->writeln($warnings);
 
         }
