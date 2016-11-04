@@ -64,8 +64,10 @@ There are to ways to use it :
   
    // compile only one file in sourcemap - css must have been generated before 
    $sassGenerator->generateMap($file[0]); // false on failure, path to sourcemap file on success
-  
-   $sassGenerator->getWarnings(); // get all warnings encountered during compilation or sourcemap generation
    
-   $sassGenerator->init(/*params*/); // you can re-initialise the service at any time to compile another scss folder
+   // get all warnings encountered during compilation or sourcemap generation
+   $sassGenerator->getWarnings(); 
+   
+   // you can re-initialise the service at any time to compile another scss folder
+   $sassGenerator->init(/*params*/); 
    ```
